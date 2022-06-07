@@ -12,6 +12,8 @@ import { Provider } from 'react-redux';
 import { store } from "./store";
 import { PersistGate } from "reduxjs-toolkit-persist/integration/react";
 import { persistStore } from "reduxjs-toolkit-persist";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const element = document.getElementById('root')!;
 const root = ReactDOM.createRoot(element);
@@ -22,6 +24,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <ToastContainer hideProgressBar closeOnClick />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<LandingContainer />} />

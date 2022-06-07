@@ -11,6 +11,7 @@ import Input from "../../components/organisms/Input/Input";
 import styles from "./SellHouseContainer.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteDraft, storeDraft } from "../../slices/rootSlice.slice";
+import { toast } from 'react-toastify';
 
 const structure = StructureForm as IFormStructure[];
 const totalSteps = structure.length;
@@ -79,9 +80,12 @@ const SellHouseContainer: React.FunctionComponent = () => {
       <SellHouseForm
         onSubmit={handleSubmitForm}
         onSaveDraft={() => {
-          const values = getValues();
+          dispatch(storeDraft(getValues()));
+          toast.success("Borrador guardado exitosamente");
 
-          dispatch(storeDraft(values))
+          setTimeout(() => {
+            navigate("/");
+          }, 500);
         }}
         useFormHook={form}
       >
