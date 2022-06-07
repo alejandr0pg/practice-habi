@@ -14,6 +14,7 @@ import { PersistGate } from "reduxjs-toolkit-persist/integration/react";
 import { persistStore } from "reduxjs-toolkit-persist";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ResumeContainer from './pages/resume/ResumeContainer';
 
 const element = document.getElementById('root')!;
 const root = ReactDOM.createRoot(element);
@@ -31,9 +32,8 @@ root.render(
             <Route path="/sell-house" element={<SellHouseContainer />}>
               <Route path=":step" element={<SellHouseContainer />} />
             </Route>
-            <Route path="*">
-              404 not found
-            </Route>
+            <Route path='/resume-of-sell-house' element={<ResumeContainer />} />
+            <Route path="*" element={<div>404 not found</div>} />
           </Routes>
         </BrowserRouter>
       </PersistGate>

@@ -2,11 +2,11 @@ import React from "react";
 import { UseFormReturn } from "react-hook-form";
 import styles from "./Input.module.scss";
 
-import { EnumInputTypesCustom } from "./Input.enum";
-import { IRenderInputProps } from "../../../interfaces/IRenderInputProps.interface";
+import { IRenderInputProps, TypesInput } from "../../../interfaces/IRenderInputProps.interface";
 import CurrencyInput from '../../atoms/CurrencyInput/CurrencyInput';
 import Switch from "../../atoms/Switch/Switch";
 import SwitchGroup from "../../atoms/SwitchGroup/SwitchGroup";
+import File from "../../atoms/File/File";
 
 interface IProps extends IRenderInputProps {
   value?: any;
@@ -15,9 +15,10 @@ interface IProps extends IRenderInputProps {
 }
 
 const inputByTypes = {
-  [EnumInputTypesCustom.Switch]: (props) => <Switch {...props} />,
-  [EnumInputTypesCustom.SwitchGroup]: (props) => <SwitchGroup {...props} />,
-  [EnumInputTypesCustom.Currency]: (props) => <CurrencyInput {...props} />,
+  [TypesInput.Switch]: (props) => <Switch {...props} />,
+  [TypesInput.SwitchGroup]: (props) => <SwitchGroup {...props} />,
+  [TypesInput.Currency]: (props) => <CurrencyInput {...props} />,
+  [TypesInput.File]: (props) => <File {...props} />,
 }
 
 const Input: React.FunctionComponent<IProps> = ({
@@ -33,7 +34,7 @@ const Input: React.FunctionComponent<IProps> = ({
   const { register, formState: { errors } } = useFormHook;
 
   const haveError = Object.keys(errors).includes(name);
-  const isTypeCustom = Object.values(EnumInputTypesCustom).includes(type as any);
+  const isTypeCustom = Object.keys(inputByTypes).includes(type);
 
   const messagesErrorsGenerals = {
     required: `El campo es requerido`,
@@ -86,7 +87,7 @@ const Input: React.FunctionComponent<IProps> = ({
       <div className={`${styles.inputContainer} ${haveError ? styles.inputError : ''}`}>
         {label && (
           <label
-            className={`${type === EnumInputTypesCustom.SwitchGroup ? styles.centerText : undefined}`}
+            className={`${type === TypesInput.SwitchGroup ? styles.centerText : undefined}`}
           >
             {label}
           </label>

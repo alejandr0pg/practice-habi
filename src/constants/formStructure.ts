@@ -1,4 +1,4 @@
-import { IFormStructure } from './../../interfaces/IFormStructure.interface';
+import { IFormStructure } from '../interfaces/IFormStructure.interface';
 
 const formStructure: IFormStructure[] = [
   {
@@ -68,6 +68,14 @@ const formStructure: IFormStructure[] = [
     "order": 5
   },
   {
+    "name": "elevator",
+    "label": "¿Cuenta con ascensor el apto?",
+    "type": "switch",
+    "description": "",
+    "path": "have-elevator",
+    "order": 6
+  },
+  {
     "name": "amount",
     "label": "Monto del inmueble",
     "type": "currency",
@@ -76,7 +84,7 @@ const formStructure: IFormStructure[] = [
       "required": true
     },
     "path": "amount",
-    "order": 6
+    "order": 7
   },
   {
     "name": "photo",
@@ -84,16 +92,8 @@ const formStructure: IFormStructure[] = [
     "type": "file",
     "description": "",
     "path": "take-picture",
-    "order": 7
-  },
-  {
-    "name": "elevator",
-    "label": "¿Cuenta con ascensor el apto?",
-    "type": "switch",
-    "description": "",
-    "path": "have-elevator",
     "order": 8
-  }
+  },
 ]
 
 export default formStructure;

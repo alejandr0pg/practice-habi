@@ -1,6 +1,6 @@
 import React from "react";
 import SellHouseForm from "../../components/templates/SellHouseForm/SellHouseForm";
-import StructureForm from "./formStructure";
+import StructureForm from "../../constants/formStructure";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Stepper } from "react-form-stepper";
 import Button from "../../components/atoms/Button/Button";
