@@ -9,17 +9,23 @@ import { useForm } from "react-hook-form";
 import { IFormStructure } from "../../interfaces/IFormStructure.interface";
 import Input from "../../components/organisms/Input/Input";
 import styles from "./SellHouseContainer.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteDraft, storeDraft } from "../../slices/rootSlice.slice";
 
 const structure = StructureForm as IFormStructure[];
 const totalSteps = structure.length;
 
 const SellHouseContainer: React.FunctionComponent = () => {
   const { step } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const draft = useSelector((state: any) => state.draft);
 
   const form = useForm({
     mode: "onChange",
-    shouldFocusError: false
+    shouldFocusError: false,
+    defaultValues: draft as any
   });
 
   const { setValue, control, getValues, formState: { isValid } } = form;
@@ -36,7 +42,7 @@ const SellHouseContainer: React.FunctionComponent = () => {
 
   const mapStepsByStructureForm = (structure: IFormStructure[]) => structure
     .sort((a, b) => a.order - b.order)
-    .map(({ label }) => ({ label }))
+    .map(({ label }) => ({ label: label as string }))
 
   const handlePrevStep = () => {
     if (!isFirst) {
@@ -62,7 +68,10 @@ const SellHouseContainer: React.FunctionComponent = () => {
       return;
     }
 
-    navigate('/resume-of-sell-house');
+    dispatch(deleteDraft())
+    navigate('/resume-of-sell-house', {
+      state: values
+    });
   }
 
   return (
@@ -70,7 +79,9 @@ const SellHouseContainer: React.FunctionComponent = () => {
       <SellHouseForm
         onSubmit={handleSubmitForm}
         onSaveDraft={() => {
-          console.log("getValues()", getValues());
+          const values = getValues();
+
+          dispatch(storeDraft(values))
         }}
         useFormHook={form}
       >
