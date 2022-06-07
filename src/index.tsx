@@ -17,7 +17,9 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingContainer />} />
-        <Route path="/sell-house" element={<SellHouseContainer />} />
+        <Route path="/sell-house" element={<SellHouseContainer />}>
+          <Route path=":step" element={<SellHouseContainer />} />
+        </Route>
         <Route path="*">
           404 not found
         </Route>

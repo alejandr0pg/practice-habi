@@ -1,15 +1,17 @@
 .button {
-    border-width: 2px;
+    cursor: pointer;
     border-style: solid;
     font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     text-transform: uppercase;
     position: relative;
+    border-width: 2px;
     border-color: #fff;
-    color: #fff;
+    background-color: #fff;
+    color: #0e63ff;
     text-decoration: none;
     border-radius: 50px;
-    background-color: rgba(255, 255, 255, 0.10);
     display: inline-block;
     padding: 12px 56px;
     margin-bottom: 0;
@@ -20,11 +22,91 @@
     -moz-transition: 0.2s ease-in-out;
     -webkit-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
-    text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
 
     &:hover,
     &:active,
     &:focus {
-        background-color: rgba(255, 255, 255, 0.20);
+        color: #082f76;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        background: #eee !important;
+        border-color: #eee !important;
+        color: rgb(204, 204, 204) !important;
+    }
+}
+
+.btn-small {
+    font-size: 12px;
+    padding: 8px 28px;
+}
+
+.btn-middle {
+    font-size: 15px;
+    padding: 10px 36px;
+}
+
+.btn-color-primary {
+    color: #fff;
+    background: #0e63ff;
+    border-color: #0e63ff !important;
+
+    &[class~="bordered"] {
+        background: transparent;
+
+        &:not([disabled]) {
+            color: #0e63ff !important;
+
+            &:active,
+            &:focus {
+                color: rgb(204, 204, 204);
+            }
+
+            &:hover {
+                color: #082f76 !important;
+                border-color: #082f76 !important;
+            }
+        }
+
+    }
+
+    &:active,
+    &:focus {
+        color: #fff;
+    }
+
+    &:hover {
+        color: #082f76;
+    }
+}
+
+.btn-color-gray {
+    background: #eee;
+    color: rgb(119, 119, 119);
+    border-color: #eee !important;
+
+    &[class~="bordered"] {
+        background: transparent;
+        color: rgb(204, 204, 204);
+
+        &:active,
+        &:focus {
+            color: rgb(204, 204, 204);
+        }
+
+        &:hover {
+            color: rgb(119, 119, 119);
+            border-color: rgb(119, 119, 119);
+        }
+    }
+
+    &:active,
+    &:focus {
+        color: rgb(119, 119, 119);
+    }
+
+    &:hover {
+        color: rgb(204, 204, 204);
     }
 }

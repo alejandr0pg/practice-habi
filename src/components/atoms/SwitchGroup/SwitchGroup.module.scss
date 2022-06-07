@@ -1,0 +1,14 @@
+.wrapper {
+    display: flex;
+
+    div {
+        &>label {
+            text-align: center;
+        }
+
+        &>div {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

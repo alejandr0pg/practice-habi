@@ -3,9 +3,7 @@ import Header from "../../components/organisms/Header/Header";
 
 const LandingContainer: React.FunctionComponent = () => {
   return (
-    <div>
-      <Header />
-    </div>
+    <Header />
   );
 }
 

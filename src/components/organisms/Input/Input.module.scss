@@ -1,0 +1,40 @@
+.inputContainer {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &>label {
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 28px;
+        color: rgb(46, 41, 51);
+    }
+
+    &>input {
+        border-radius: 8px;
+        border-width: 2px;
+        border-style: solid;
+        border-color: #EEE;
+        padding: 12px 20px;
+        font-family: "Montserrat";
+        font-size: 13px;
+        font-weight: 600;
+    }
+}
+
+.errorMessage {
+    color: rgb(228, 0, 0)
+}
+
+.inputError {
+    &>input {
+        border-color: rgb(228, 0, 0) !important;
+    }
+}
+
+.centerText {
+    text-align: center;
+    margin-bottom: 30px !important;
+}
