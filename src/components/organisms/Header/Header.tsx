@@ -7,16 +7,24 @@ import HeroContent from '../../atoms/heroContent/HeroContent';
 import AnimatedText from 'react-animated-text-content';
 import styles from './Header.module.scss';
 import NavItem from '../../atoms/NavItem/NavItem';
+import { useMobileMediaQuery } from '../../../hooks/MediaQueryHook';
+import clsx from "clsx";
 
 const Header: React.FunctionComponent = () => {
+  const isMobile = useMobileMediaQuery();
+
   return (
     <header>
       <HeaderNavigation>
-        <NavItem to='/' label='Inicio' isActive />
-        <NavItem to='#howtosell' label='¿Como vender?' />
-        <NavItem to='#howtobuy' label='¿Como comprar?' />
-        <NavItem to='#habimeter' label='Habimetro' />
-        <NavItem to='/sell-house' label='Vender propiedad' />
+        {!isMobile && (
+          <React.Fragment>
+            <NavItem to='/' label='Inicio' isActive />
+            <NavItem to='#howtosell' label='¿Como vender?' />
+            <NavItem to='#howtobuy' label='¿Como comprar?' />
+            <NavItem to='#habimeter' label='Habimetro' />
+            <NavItem to='/sell-house' label='Vender propiedad' />
+          </React.Fragment>
+        )}
       </HeaderNavigation>
       <Hero>
         <HeroContent>
@@ -35,7 +43,9 @@ const Header: React.FunctionComponent = () => {
             </AnimatedText>
           </HeroTitle>
 
-          <div className={styles.buttonContainer}>
+          <div className={clsx(styles.buttonContainer, {
+            [styles.buttonContainerMobile]: isMobile
+          })}>
             <Button to='/sell-house'>Vende tu casa ahora!</Button>
           </div>
         </HeroContent>

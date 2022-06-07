@@ -3,3 +3,13 @@
     justify-content: space-between;
     margin-top: 5em;
 }
+
+.footerMobile {
+    flex-direction: column-reverse;
+
+    &>button {
+        &:last-of-type {
+            margin-bottom: 5px;
+        }
+    }
+}

@@ -1,8 +1,10 @@
 import React from 'react'
 import { UseFormReturn } from 'react-hook-form';
+import { useMobileMediaQuery } from '../../../hooks/MediaQueryHook';
 import { IRenderInputProps } from '../../../interfaces/IRenderInputProps.interface';
 import Input from '../../organisms/Input/Input';
 import styles from "./SwitchGroup.module.scss";
+import clsx from "clsx";
 
 interface IProps extends IRenderInputProps {
   useFormHook: UseFormReturn;
@@ -22,9 +24,12 @@ const SwitchInputWrapper = React.forwardRef(({ name, label, value, useFormHook }
 
 const SwitchGroup: React.FunctionComponent<IProps> = (props) => {
   const { name, options, useFormHook } = props;
+  const isMobile = useMobileMediaQuery();
 
   return (
-    <div className={styles.wrapper}>
+    <div className={clsx(styles.wrapper, {
+      [styles.wrapperMobile]: isMobile
+    })}>
       {options?.map(({ value, label }) => (
         <SwitchInputWrapper
           key={`${value}`}

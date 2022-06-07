@@ -2,3 +2,9 @@
     display: flow-root;
     justify-self: center;
 }
+
+.buttonContainerMobile {
+    &>a {
+        padding: 12px 22px;
+    }
+}

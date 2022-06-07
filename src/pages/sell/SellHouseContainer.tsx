@@ -12,6 +12,8 @@ import styles from "./SellHouseContainer.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteDraft, storeDraft } from "../../slices/rootSlice.slice";
 import { toast } from 'react-toastify';
+import { useMobileMediaQuery } from "../../hooks/MediaQueryHook";
+import clsx from "clsx";
 
 const structure = StructureForm as IFormStructure[];
 const totalSteps = structure.length;
@@ -20,6 +22,7 @@ const SellHouseContainer: React.FunctionComponent = () => {
   const { step } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isMobile = useMobileMediaQuery();
 
   const draft = useSelector((state: any) => state.draft);
 
@@ -89,12 +92,20 @@ const SellHouseContainer: React.FunctionComponent = () => {
         }}
         useFormHook={form}
       >
-        <Stepper
-          steps={mapStepsByStructureForm(structure)}
-          activeStep={currentIndex}
-        />
+        {!isMobile ? (
+          <Stepper
+            steps={mapStepsByStructureForm(structure)}
+            activeStep={currentIndex}
+          />
+        ) : (
+          <div style={{ textAlign: "right" }}>
+            Paso: {currentIndex + 1} / {totalSteps}
+          </div>
+        )}
 
-        <div className={styles.form}>
+        <div className={clsx(styles.form, {
+          [styles.formMobile]: isMobile
+        })}>
           <div className={styles.inputContent}>
             <Input useFormHook={form} {...current} />
           </div>
